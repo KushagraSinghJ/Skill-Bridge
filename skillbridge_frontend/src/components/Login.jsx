@@ -81,7 +81,7 @@ const Login = () => {
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <div className="space-y-1">
-            <label className="text-sm font-semibold text-gray-700 block">Email</label>
+            <label className="text-sm font-semibold text-gray-700 block">Email <span className="text-red-500">*</span></label>
             <input
               type="email"
               placeholder="name@example.com"
@@ -93,7 +93,7 @@ const Login = () => {
           </div>
 
           <div className="space-y-1">
-            <label className="text-sm font-semibold text-gray-700 block">Password</label>
+            <label className="text-sm font-semibold text-gray-700 block">Password <span className="text-red-500">*</span></label>
             <input
               type="password"
               placeholder="••••••••"
@@ -105,7 +105,7 @@ const Login = () => {
           </div>
 
           <div className="space-y-1">
-            <label className="text-sm font-semibold text-gray-700 block">Role</label>
+            <label className="text-sm font-semibold text-gray-700 block">Role <span className="text-red-500">*</span></label>
             <select
               className="premium-input appearance-none bg-white cursor-pointer"
               value={role}
