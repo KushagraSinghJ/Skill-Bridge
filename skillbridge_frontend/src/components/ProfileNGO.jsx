@@ -1,4 +1,3 @@
-import "./ProfileNGO.css";
 import { useNavigate, Link } from "react-router-dom";
 
 const ProfileNGO = () => {
