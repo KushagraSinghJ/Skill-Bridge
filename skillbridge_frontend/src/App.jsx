@@ -1,11 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+<<<<<<< HEAD
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+=======
+>>>>>>> origin/main
 
 import LandingPage from "./components/LandingPage";
 import Login from "./components/Login";
 import Register from "./components/Register";
+<<<<<<< HEAD
 import NGODashboard from "./pages/NGODashboard";
 import VolunteerDashboard from "./pages/VolunteerDashboard";
 import CreateOpportunity from "./pages/CreateOpportunity";
@@ -125,7 +129,28 @@ const App = () => {
         </Routes>
       </Router>
     </AuthProvider>
+=======
+import ProfileNGO from "./components/ProfileNgo";
+import ProfileVolunteer from "./components/ProfileVolunteer";
+
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile-ngo" element={<ProfileNGO />} />
+        <Route path="/profile-volunteer" element={<ProfileVolunteer />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
+>>>>>>> origin/main
   );
 };
 
 export default App;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/main

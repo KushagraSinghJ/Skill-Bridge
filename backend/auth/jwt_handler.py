@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 import time
 from typing import Dict, Optional
+=======
+
+import time
+from typing import Dict
+>>>>>>> origin/main
 from jose import jwt
 from decouple import config
 
@@ -11,17 +17,25 @@ def token_response(token: str):
         "access_token": token
     }
 
+<<<<<<< HEAD
 def signJWT(email: str, role: str, name: Optional[str] = None) -> Dict[str, str]:
     payload = {
         "email": email,
         "role": role,
         "name": name,
+=======
+def signJWT(user_id: str, role: str) -> Dict[str, str]:
+    payload = {
+        "user_id": user_id,
+        "role": role,
+>>>>>>> origin/main
         "expires": time.time() + 3600 # 1 hour
     }
     
     token = jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
     return token_response(token)
 
+<<<<<<< HEAD
 def decodeJWT(token: str) -> Optional[dict]:
     try:
         decoded_token = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
@@ -29,3 +43,11 @@ def decodeJWT(token: str) -> Optional[dict]:
     except Exception as e:
         print(f"JWT decode error: {e}")
         return None
+=======
+def decodeJWT(token: str) -> dict:
+    try:
+        decoded_token = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+        return decoded_token if decoded_token["expires"] >= time.time() else None
+    except:
+        return {}
+>>>>>>> origin/main

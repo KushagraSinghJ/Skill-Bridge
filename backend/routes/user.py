@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from fastapi import APIRouter, HTTPException, Depends, Header, Query
 from database import users_collection, opportunities_collection, applications_collection
 from schemas.user_schema import UserRegister, UserResponse, UserLogin, ProfileUpdate
@@ -21,17 +22,32 @@ async def get_current_user(authorization: str = Header(...)):
     
     user["id"] = str(user["_id"])
     return user
+=======
+from fastapi import APIRouter, HTTPException
+from database import users_collection
+from schemas.user_schema import UserRegister, UserResponse, UserLogin
+from auth.jwt_handler import signJWT
+from auth.password_utils import hash_password, verify_password
+
+router = APIRouter()
+
+>>>>>>> origin/main
 
 # -----------------------------
 # REGISTER USER
 # -----------------------------
 @router.post("/register", response_model=UserResponse)
 async def register_user(user: UserRegister):
+<<<<<<< HEAD
+=======
+    
+>>>>>>> origin/main
     # Check if email already exists
     existing_user = await users_collection.find_one({"email": user.email})
     if existing_user:
         raise HTTPException(status_code=400, detail="Email already registered")
 
+<<<<<<< HEAD
     hashed_pwd = hash_password(user.password)
     user_data = user.dict()
     user_data["password"] = hashed_pwd
@@ -51,16 +67,38 @@ async def register_user(user: UserRegister):
         website_url=user.website_url,
         message="User registered successfully"
     )
+=======
+    # 🔐 HASH THE PASSWORD
+    hashed_pwd = hash_password(user.password)
+
+    user_data = user.dict()
+    user_data["password"] = hashed_pwd   # Replace plain password with hashed
+
+    await users_collection.insert_one(user_data)
+
+    return {
+        "username": user.username,
+        "email": user.email,
+        "role": user.role,
+        "message": "User registered successfully"
+    }
+
+>>>>>>> origin/main
 
 # -----------------------------
 # LOGIN USER
 # -----------------------------
 @router.post("/login")
 async def login_user(user: UserLogin):
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
     existing_user = await users_collection.find_one({"email": user.email})
 
     if not existing_user:
         raise HTTPException(status_code=400, detail="User not found")
+<<<<<<< HEAD
     if not verify_password(user.password, existing_user['password']):
         raise HTTPException(status_code=400, detail="Invalid password")
     
@@ -203,3 +241,21 @@ async def get_all_volunteers(
         )
 
     return volunteers
+=======
+
+    # 🔐 VERIFY HASHED PASSWORD
+    if not verify_password(user.password, existing_user["password"]):
+        raise HTTPException(status_code=400, detail="Invalid password")
+
+    # Generate JWT Token
+    token_resp = signJWT(existing_user["email"], existing_user["role"])
+
+    return {
+        "username": existing_user["username"],
+        "email": existing_user["email"],
+        "role": existing_user["role"],
+        "message": "User logged in successfully",
+        "access_token": token_resp["access_token"],
+        "token_type": "bearer"
+    }
+>>>>>>> origin/main

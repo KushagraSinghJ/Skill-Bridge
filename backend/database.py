@@ -8,7 +8,10 @@ db = client["milestone_db"]
 
 users_collection = db["users"]
 profiles_collection = db["profiles"]
+<<<<<<< HEAD
 opportunities_collection = db["opportunities"]
 applications_collection = db["applications"]
 messages_collection = db["messages"]
 notifications_collection = db["notifications"]
+=======
+>>>>>>> origin/main

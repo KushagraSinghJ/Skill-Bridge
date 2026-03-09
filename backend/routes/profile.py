@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from fastapi import APIRouter, HTTPException, Depends
 from database import profiles_collection
 from schemas.profile_schema import ProfileSchema
@@ -8,6 +9,16 @@ router = APIRouter()
 
 @router.post("/profile")
 async def create_profile(profile: ProfileSchema, current_user: dict = Depends(get_current_user)):
+=======
+from fastapi import APIRouter, HTTPException
+from database import profiles_collection
+from schemas.profile_schema import ProfileSchema
+
+router = APIRouter()
+
+@router.post("/profile")
+async def create_profile(profile: ProfileSchema):
+>>>>>>> origin/main
     # Check if profile exists
     existing_profile = await profiles_collection.find_one({"email": profile.email})
     if existing_profile:

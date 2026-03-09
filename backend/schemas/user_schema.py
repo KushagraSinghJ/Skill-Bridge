@@ -1,4 +1,5 @@
 from pydantic import BaseModel, EmailStr
+<<<<<<< HEAD
 from typing import Optional, List
 
 class UserRegister(BaseModel):
@@ -12,11 +13,23 @@ class UserRegister(BaseModel):
     organization_name: Optional[str] = None
     organization_description: Optional[str] = None
     website_url: Optional[str] = None
+=======
+from typing import Optional
+
+
+class UserRegister(BaseModel):
+    username: str
+    email: EmailStr
+    password: str
+    role: str
+
+>>>>>>> origin/main
 
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
 
+<<<<<<< HEAD
 class UserResponse(BaseModel):
     id: Optional[str] = None
     name: str
@@ -38,3 +51,11 @@ class ProfileUpdate(BaseModel):
     organization_name: Optional[str] = None
     organization_description: Optional[str] = None
     website_url: Optional[str] = None
+=======
+
+class UserResponse(BaseModel):
+    username: str
+    email: EmailStr
+    role: str
+    message: Optional[str]
+>>>>>>> origin/main
